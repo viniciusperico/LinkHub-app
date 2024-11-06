@@ -16,6 +16,12 @@
         <p>📢 Aviso: Projeto novo chegando amanhã! Fique de olho!</p>
       </div>
 
+      <a href="#" id="link-programado" class="link-prog" title="Link programado em breve!">
+        <img src="https://img.icons8.com/?size=100&id=59760&format=png&color=000000" alt="rede-social" />
+        <p>Link Programado</p>
+      </a>
+      <p id="status-programacao" style="color: #f5f5f7;">Este link será ativado em: <span id="data-programacao">01/12/2024</span></p>
+
       <a href="https://wa.me/5543998151440" class="link-media" title="Me mande uma mensagem!">
         <img
           src="https://img.icons8.com/?size=30&id=85396&format=png&color=000000"
@@ -24,12 +30,12 @@
         <p>WhatsApp</p>
       </a>
 
-      <a href="https://www.tiktok.com/@vinicius_perico" class="link-media" title="Confira meus vídeos!">
+      <a href="https://www.linkedin.com/in/vinicius-périco-b6262329b/" class="link-media" title="Linkedin">
         <img
-          src="https://img.icons8.com/?size=30&id=123922&format=png&color=000000"
+          src="https://img.icons8.com/?size=100&id=98960&format=png&color=000000"
           alt="rede-social"
         />
-        <p>TikTok</p>
+        <p>Linkedin</p>
       </a>
 
       <a href="https://github.com/viniciusperico" class="link-media" title="Veja meus projetos!">
@@ -51,6 +57,10 @@
       <div id="contador-visitantes" class="contador-visitantes">
         <p>👥 Visitantes: <span id="visitantes">0</span></p>
       </div>
+
+      <button id="compartilhar-grupo">
+        <img src="https://img.icons8.com/?size=25&id=82713&format=png&color=ffffff" title="Compartilhar Link" alt="Compartilhar Link" >
+      </button>
 
     </div>
 
@@ -74,6 +84,31 @@
         visitantes.textContent = contagem;
       }
       incrementarVisitantes();
+
+      document.getElementById("compartilhar-grupo").addEventListener("click", () => {
+        const link = "https://example.com";
+        const grupos = ["whatsapp", "telegram", "email"];
+
+        grupos.forEach(grupo => {
+          window.open(`https://api.${grupo}.com/send?text=${encodeURIComponent(link)}`, '_blank');
+        });
+      });
+
+      const dataProgramacao = new Date("2024-11-07T12:14:00");
+      const linkProgramado = document.getElementById("link-programado");
+
+      function verificarLinkProgramado() {
+        const agora = new Date();
+        if (agora >= dataProgramacao) {
+          linkProgramado.href = "https://linkprogramado"; 
+          linkProgramado.style.pointerEvents = "auto"; 
+          document.getElementById("status-programacao").textContent = "Link ativo!";
+        } else {
+          const tempoRestante = Math.ceil((dataProgramacao - agora) / 1000 / 60 / 60 / 24);
+          document.getElementById("status-programacao").textContent = `Este link será ativado em: ${tempoRestante} dias.`;
+        }
+      }
+      setInterval(verificarLinkProgramado, 1000);
     </script>
   </body>
 </html>
