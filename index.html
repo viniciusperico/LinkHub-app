@@ -4,16 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>LinkNest</title>
+    <title>LinkHub</title>
   </head>
   <body>
     <div class="container">
-      <img src="img\img-profile.jpg" alt="foto-perfil" class="foto-perfil" />
-
+      <img src="img/img-profile.jpg" alt="foto-perfil" class="foto-perfil" />
       <h1>Vinicius Périco</h1>
-      <p>Bem-vindo ao meu LinkNest</p>
+      <p>Bem-vindo ao meu LinkHub</p>
 
-      <a href="https://wa.me/5543998151440" class="link-media">
+      <div class="quadro-avisos">
+        <p>📢 Aviso: Projeto novo chegando amanhã! Fique de olho!</p>
+      </div>
+
+      <a href="https://wa.me/5543998151440" class="link-media" title="Me mande uma mensagem!">
         <img
           src="https://img.icons8.com/?size=30&id=85396&format=png&color=000000"
           alt="rede-social"
@@ -21,7 +24,7 @@
         <p>WhatsApp</p>
       </a>
 
-      <a href="https://www.tiktok.com/@vinicius_perico" class="link-media">
+      <a href="https://www.tiktok.com/@vinicius_perico" class="link-media" title="Confira meus vídeos!">
         <img
           src="https://img.icons8.com/?size=30&id=123922&format=png&color=000000"
           alt="rede-social"
@@ -29,7 +32,7 @@
         <p>TikTok</p>
       </a>
 
-      <a href="https://github.com/viniciusperico" class="link-media">
+      <a href="https://github.com/viniciusperico" class="link-media" title="Veja meus projetos!">
         <img
           src="https://img.icons8.com/?size=30&id=62856&format=png&color=000000"
           alt="rede-social"
@@ -37,17 +40,40 @@
         <p>GitHub</p>
       </a>
 
-      <a href="https://www.instagram.com/vinicius_perico" class="link-media">
+      <a href="https://www.instagram.com/vinicius_perico" class="link-media" title="Acompanhe meu Instagram!">
         <img
           src="https://img.icons8.com/?size=30&id=85140&format=png&color=000000"
           alt="rede-social"
         />
         <p>Instagram</p>
       </a>
+
+      <div id="contador-visitantes" class="contador-visitantes">
+        <p>👥 Visitantes: <span id="visitantes">0</span></p>
+      </div>
+
     </div>
+
     <footer class="footer">
       <p>
-        <a href="https://wa.me/5543998151440" target="_blank" class="footer-link">© 2024 LinkNest</a></p>
+        <a href="https://wa.me/5543998151440" target="_blank" class="footer-link">© 2024 LinkHub</a>
+      </p>
+      <p class="ultima-atualizacao">Última atualização: <span id="data-atualizacao"></span></p>
     </footer>
+
+    <script>
+
+      const dataAtual = new Date();
+      document.getElementById("data-atualizacao").textContent = dataAtual.toLocaleDateString();
+
+      function incrementarVisitantes() {
+        const visitantes = document.getElementById("visitantes");
+        let contagem = localStorage.getItem("contador") || 0;
+        contagem++;
+        localStorage.setItem("contador", contagem);
+        visitantes.textContent = contagem;
+      }
+      incrementarVisitantes();
+    </script>
   </body>
 </html>
